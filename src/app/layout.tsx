@@ -9,8 +9,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Hotel Management System',
-  description: 'A comprehensive hotel management system built with Next.js',
+  title: 'School Management System',
+  description: 'A comprehensive schooll management system built with Next.js',
 }
 
 export default function RootLayout({
