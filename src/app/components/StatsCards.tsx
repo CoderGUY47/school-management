@@ -25,7 +25,7 @@ const StatsCards: React.FC<StatsCardProps> = ({ darkMode }) => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-300 text-sm font-medium font-poppins">{stat.title}</p>
-              <p className="text-3xl font-bold text-white mt-2 font-poppins">{stat.count.toLocaleString()}</p>
+              <p className="text-3xl font-bold text-white mt-2 font-poppins">{stat.count.toString()}</p>
               <div className="flex items-center space-x-1 mt-1">
                 <HiTrendingUp className="text-green-400" size={36} />
                 <p className="text-green-400 text-sm font-poppins">{stat.change} from last month</p>

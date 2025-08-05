@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { 
   HiOutlineBookOpen,
   HiOutlineStar
@@ -18,6 +19,8 @@ import { TbArrowBigUpLineFilled } from "react-icons/tb";
 import StatsCards from './components/StatsCards';
 import DataTables from './components/DataTables';
 import Modals from './components/Modals';
+import SignIn from './components/SignIn';
+
 
 // Remove incorrect imports - we'll use direct paths instead
 
@@ -110,9 +113,29 @@ interface NewEmployeeFormData {
 }
 
 interface UserProfile {
-  name: string;
+  id: string;
+  username: string;
+  fullName: string;
   email: string;
   role: string;
+  profilePicture: string;
+  nationalId: string;
+  dateOfBirth: string;
+  fatherName: string;
+  motherName: string;
+  mobileNumber: string;
+  alternateMobile: string;
+  address: string;
+  city: string;
+  country: string;
+  emergencyContact: string;
+  emergencyRelation: string;
+  bloodGroup: string;
+  gender: string;
+  department: string;
+  joiningDate: string;
+  qualification: string;
+  experience: string;
 }
 
 interface Course {
@@ -124,10 +147,14 @@ interface Course {
   students: number;
   rating: number;
   category: string;
+  isEnrolled?: boolean;
 }
 
 export default function Dashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   // State for search functionality
   const [studentSearchTerm, setStudentSearchTerm] = useState('');
@@ -201,11 +228,119 @@ export default function Dashboard() {
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [autoSave, setAutoSave] = useState(true);
-  const [userProfile] = useState<UserProfile>({
-    name: 'Admin User',
+  const [userProfile, setUserProfile] = useState<UserProfile>({
+    id: '1',
+    username: 'admin',
+    fullName: 'Admin User',
     email: 'admin@blendlearning.com',
-    role: 'Administrator'
+    role: 'Administrator',
+    profilePicture: '/images/carer1.jpg',
+    nationalId: '',
+    dateOfBirth: '',
+    fatherName: '',
+    motherName: '',
+    mobileNumber: '',
+    alternateMobile: '',
+    address: '',
+    city: '',
+    country: '',
+    emergencyContact: '',
+    emergencyRelation: '',
+    bloodGroup: '',
+    gender: '',
+    department: 'Information Technology',
+    joiningDate: '',
+    qualification: '',
+    experience: ''
   });
+
+  // State for edit modals
+  const [showEditStudentModal, setShowEditStudentModal] = useState(false);
+  const [showEditTeacherModal, setShowEditTeacherModal] = useState(false);
+  const [showEditEmployeeModal, setShowEditEmployeeModal] = useState(false);
+  const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
+  const [showAddStudentModal, setShowAddStudentModal] = useState(false);
+  const [showAddTeacherModal, setShowAddTeacherModal] = useState(false);
+  const [profileImageError, setProfileImageError] = useState(false);
+  const [enrolledCourses, setEnrolledCourses] = useState<Set<number>>(new Set());
+
+  // State for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const [currentStudentPage, setCurrentStudentPage] = useState(1);
+  const [currentTeacherPage, setCurrentTeacherPage] = useState(1);
+  const [currentCoursePage, setCurrentCoursePage] = useState(1);
+
+  // Check authentication status on component mount
+  useEffect(() => {
+    setMounted(true);
+    
+    if (typeof window !== 'undefined') {
+      const authStatus = localStorage.getItem('isAuthenticated');
+      const userData = localStorage.getItem('user');
+      const savedProfile = localStorage.getItem('userProfile');
+      
+      if (authStatus === 'true') {
+        setIsAuthenticated(true);
+        
+        // Load saved profile from localStorage if available
+        if (savedProfile) {
+          try {
+            const profile = JSON.parse(savedProfile);
+            setUserProfile(profile);
+            setProfileImageError(false); // Reset error state for new profile
+          } catch (error) {
+            console.error('Error parsing saved profile:', error);
+          }
+        } else if (userData) {
+          try {
+            const user = JSON.parse(userData);
+            setUserProfile({
+              id: '1',
+              username: user.username || 'admin',
+              fullName: user.username || 'Admin User',
+              email: 'admin@blendlearning.com',
+              role: user.role || 'Administrator',
+              profilePicture: '/images/carer1.jpg',
+              nationalId: '',
+              dateOfBirth: '',
+              fatherName: '',
+              motherName: '',
+              mobileNumber: '',
+              alternateMobile: '',
+              address: '',
+              city: '',
+              country: '',
+              emergencyContact: '',
+              emergencyRelation: '',
+              bloodGroup: '',
+              gender: '',
+              department: 'Information Technology',
+              joiningDate: '',
+              qualification: '',
+              experience: ''
+            });
+            setProfileImageError(false); // Reset error state for new profile
+          } catch (error) {
+            console.error('Error parsing user data:', error);
+          }
+        }
+      }
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Handle sign in
+  const handleSignIn = () => {
+    setIsAuthenticated(true);
+  };
+
+  // Handle sign out
+  const handleSignOut = () => {
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('user');
+    setIsAuthenticated(false);
+  };
 
   // Handle scroll to show/hide scroll to top button
   useEffect(() => {
@@ -213,7 +348,7 @@ export default function Dashboard() {
       setShowScrollTop(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -224,21 +359,6 @@ export default function Dashboard() {
       behavior: 'smooth'
     });
   };
-
-  // State for edit modals
-  const [showEditStudentModal, setShowEditStudentModal] = useState(false);
-  const [showEditTeacherModal, setShowEditTeacherModal] = useState(false);
-  const [showEditEmployeeModal, setShowEditEmployeeModal] = useState(false);
-  const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
-  const [showAddStudentModal, setShowAddStudentModal] = useState(false);
-  const [showAddTeacherModal, setShowAddTeacherModal] = useState(false);
-  
-  // State for pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
-  const [currentStudentPage, setCurrentStudentPage] = useState(1);
-  const [currentTeacherPage, setCurrentTeacherPage] = useState(1);
-  const [currentCoursePage, setCurrentCoursePage] = useState(1);
 
   // Edit functions
   const handleEditStudent = (student: Student) => {
@@ -711,8 +831,42 @@ export default function Dashboard() {
     setCurrentCoursePage(prev => Math.min(prev + 1, totalCoursePages));
   };
 
+  // Show loading state while checking authentication
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#250c38] via-[#3c225a] to-slate-800 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-700 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
+            <MdSchool className="text-white text-3xl" />
+          </div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+          <p className="text-white mt-4 font-poppins">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#250c38] via-[#3c225a] to-slate-800 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-700 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
+            <MdSchool className="text-white text-3xl" />
+          </div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+          <p className="text-white mt-4 font-poppins">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show sign-in page if not authenticated
+  if (!isAuthenticated) {
+    return <SignIn onSignIn={handleSignIn} />;
+  }
+
   return (
-    <div className={`min-h-screen font-poppins transition-all duration-500 ${
+    <div className={`min-h-screen font-poppins page-transition scroll-container ${
       darkMode 
         ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-black' 
         : 'bg-gradient-to-br from-[#250c38] via-[#3c225a] to-slate-800'
@@ -729,20 +883,21 @@ export default function Dashboard() {
                   <MdSchool className="text-white text-3xl" />
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-white font-poppins">Blend Learning Center</div>
+                  <div className="text-2xl font-bold text-white font-poppins">Blend Learning Center</div>
                   <div className="text-gray-300 text-sm font-poppins">Administrative Dashboard</div>
                 </div>
               </div>
             </div>
             <div className="flex items-center space-x-6">
-              <div className="flex">
-              <div className="text-right flex flex-row gap-x-4">
-                    <div className="text-gray-400 text-base font-poppins">Courses</div>
-                    <div className="text-gray-400 text-base font-poppins">Students</div>
-                    <div className="text-gray-400 text-base font-poppins">Teachers</div>
-                  </div>
+              <div className="flex items-center space-x-4">
+                <div className="text-gray-400 text-base font-poppins">Courses</div>
+                <div className="text-gray-400 text-base font-poppins">Students</div>
+                <div className="text-gray-400 text-base font-poppins">Teachers</div>
+                <Link href="/profile" className="text-gray-400 hover:text-white text-base font-poppins transition-colors">
+                  Profile
+                </Link>
               </div>
-              <div className="w-px h-8 bg-white/20"></div>
+
               <div className="flex items-center space-x-4">
                 <button className="relative p-3 text-gray-300 hover:text-white transition-colors rounded-full hover:bg-white/10">
                   <BiSolidNotification size={26} />
@@ -754,16 +909,37 @@ export default function Dashboard() {
                 >
                   <RiSettings2Fill size={26} />
                 </button>
-                <div className="w-14 h-14 bg-gradient-to-br from-gray-600 to-gray-400 rounded-full flex items-center justify-center text-white font-semibold shadow-lg font-poppins">
-                  <FaUser className="text-white text-3xl" />
-                  {/* <Image
-                    src="/images/admin.jpg"
-                    alt="Computer Science Course"
-                    width={60}
-                    height={60}
-                    className="object-cover rounded-full"
-                  /> */}
-                </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="text-right mr-3">
+                      <div className="text-white font-semibold text-sm font-poppins">{userProfile.fullName}</div>
+                      <div className="text-gray-300 text-xs font-poppins">{userProfile.role}</div>
+                    </div>
+                    <Link href="/profile" className="w-14 h-14 bg-gradient-to-br from-gray-600 to-gray-400 rounded-full flex items-center justify-center text-white font-semibold shadow-lg font-poppins cursor-pointer hover:bg-gray-500 transition-colors overflow-hidden">
+                      {userProfile.profilePicture && !profileImageError ? (
+                        <Image
+                          src={userProfile.profilePicture}
+                          alt="Profile Picture"
+                          width={56}
+                          height={56}
+                          className="w-full h-full object-cover"
+                          unoptimized
+                          onError={() => {
+                            setProfileImageError(true);
+                            console.log('Profile image failed to load, showing default icon');
+                          }}
+                        />
+                      ) : (
+                        <FaUser className="text-white text-3xl" />
+                      )}
+                    </Link>
+
+                    <button 
+                      onClick={handleSignOut}
+                      className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 rounded-lg transition-all duration-300 font-poppins text-sm"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
               </div>
             </div>
           </div>
@@ -771,7 +947,18 @@ export default function Dashboard() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
+      <main className="container mx-auto px-6 py-8 scroll-container">
+        {/* Quick Profile Access */}
+        <div className="mb-6 flex justify-end">
+          <Link 
+            href="/profile" 
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 font-poppins text-sm shadow-lg backdrop-blur-sm"
+          >
+            <FaUser className="text-sm" />
+            <span>Profile Settings</span>
+          </Link>
+        </div>
+
         {/* Stats Cards */}
         <StatsCards darkMode={darkMode} />
 
@@ -1016,12 +1203,14 @@ export default function Dashboard() {
         setShowPopup={setShowPopup}
       />
 
+
+
       {/* Scroll to Top Button */}
       {showScrollTop && (
         <div className="fixed bottom-6 right-6 z-50">
           <button 
             onClick={scrollToTop}
-            className="p-5 bg-white/10 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-400 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-2xl transition-all duration-300 animate-bounce"
+            className="scroll-to-top-btn p-5 bg-gradient-to-r from-purple-600/80 to-indigo-600/80 hover:from-purple-500 hover:to-indigo-500 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-500 backdrop-blur-sm border border-white/20 hover:scale-110"
           >
             <TbArrowBigUpLineFilled className="text-3xl font-bold" />
           </button>

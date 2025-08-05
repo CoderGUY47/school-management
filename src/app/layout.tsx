@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -10,7 +11,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'School Management System',
-  description: 'A comprehensive schooll management system built with Next.js',
+  description: 'A comprehensive school management system built with Next.js',
 }
 
 export default function RootLayout({
@@ -20,7 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-poppins`}>{children}</body>
+      <body className={`${poppins.variable} font-poppins`}>
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
+      </body>
     </html>
   )
 }

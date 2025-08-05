@@ -92,9 +92,29 @@ interface NewEmployeeFormData {
 }
 
 interface UserProfile {
-  name: string;
+  id: string;
+  username: string;
+  fullName: string;
   email: string;
   role: string;
+  profilePicture: string;
+  nationalId: string;
+  dateOfBirth: string;
+  fatherName: string;
+  motherName: string;
+  mobileNumber: string;
+  alternateMobile: string;
+  address: string;
+  city: string;
+  country: string;
+  emergencyContact: string;
+  emergencyRelation: string;
+  bloodGroup: string;
+  gender: string;
+  department: string;
+  joiningDate: string;
+  qualification: string;
+  experience: string;
 }
 
 interface ModalsProps {
@@ -909,7 +929,7 @@ const Modals: React.FC<ModalsProps> = (props) => {
                     <FaUserAstronaut className="text-white text-xl" />
                   </div>
                   <div>
-                    <p className="text-white font-medium font-poppins">{userProfile.name}</p>
+                    <p className="text-white font-medium font-poppins">{userProfile.fullName}</p>
                     <p className="text-gray-400 text-sm font-poppins">{userProfile.email}</p>
                     <p className="text-gray-500 text-xs font-poppins">{userProfile.role}</p>
                   </div>
