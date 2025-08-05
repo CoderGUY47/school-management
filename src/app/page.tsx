@@ -9,7 +9,7 @@ import {
 import { 
   MdSchool
 } from 'react-icons/md';
-import { FaUser, FaUserAstronaut } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { RiSettings2Fill } from "react-icons/ri";
 import { BiSolidNotification } from "react-icons/bi";
 import { TbArrowBigUpLineFilled } from "react-icons/tb";
@@ -756,6 +756,13 @@ export default function Dashboard() {
                 </button>
                 <div className="w-14 h-14 bg-gradient-to-br from-gray-600 to-gray-400 rounded-full flex items-center justify-center text-white font-semibold shadow-lg font-poppins">
                   <FaUser className="text-white text-3xl" />
+                  {/* <Image
+                    src="/images/admin.jpg"
+                    alt="Computer Science Course"
+                    width={60}
+                    height={60}
+                    className="object-cover rounded-full"
+                  /> */}
                 </div>
               </div>
             </div>
