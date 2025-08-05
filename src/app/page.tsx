@@ -19,6 +19,8 @@ import StatsCards from './components/StatsCards';
 import DataTables from './components/DataTables';
 import Modals from './components/Modals';
 
+// Remove incorrect imports - we'll use direct paths instead
+
 // TypeScript interfaces
 interface Student {
   id: number;
@@ -283,33 +285,33 @@ export default function Dashboard() {
   };
 
   const recentStudents: Student[] = [
-    { id: 1, name: 'Sarah Johnson', email: 'sarah.j@email.com', course: 'Computer Science', status: 'Active', grade: 'A', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8901' },
-    { id: 2, name: 'Michael Chen', email: 'michael.c@email.com', course: 'Mathematics', status: 'Active', grade: 'B+', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8902' },
-    { id: 3, name: 'Emily Davis', email: 'emily.d@email.com', course: 'Physics', status: 'Inactive', grade: 'A-', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8903' },
-    { id: 4, name: 'David Wilson', email: 'david.w@email.com', course: 'Chemistry', status: 'Active', grade: 'B', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8904' },
-    { id: 5, name: 'Lisa Brown', email: 'lisa.b@email.com', course: 'Biology', status: 'Active', grade: 'A+', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8905' }
+    { id: 1, name: 'Sarah Johnson', email: 'sarah.j@email.com', course: 'Computer Science', status: 'Active', grade: 'A', avatar: '/images/student1.jpg', phone: '+1 234-567-8901' },
+    { id: 2, name: 'Michael Chen', email: 'michael.c@email.com', course: 'Mathematics', status: 'Active', grade: 'B+', avatar: '/images/student1.jpg', phone: '+1 234-567-8902' },
+    { id: 3, name: 'Emily Davis', email: 'emily.d@email.com', course: 'Physics', status: 'Inactive', grade: 'A-', avatar: '/images/student1.jpg', phone: '+1 234-567-8903' },
+    { id: 4, name: 'David Wilson', email: 'david.w@email.com', course: 'Chemistry', status: 'Active', grade: 'B', avatar: '/images/student1.jpg', phone: '+1 234-567-8904' },
+    { id: 5, name: 'Lisa Brown', email: 'lisa.b@email.com', course: 'Biology', status: 'Active', grade: 'A+', avatar: '/images/student1.jpg', phone: '+1 234-567-8905' }
   ];
 
   const recentTeachers: Teacher[] = [
-    { id: 1, name: 'Dr. Robert Smith', email: 'r.smith@email.com', subject: 'Mathematics', students: 45, rating: 4.8, avatar: '/api/placeholder/32/32', experience: '8 years' },
-    { id: 2, name: 'Prof. Maria Garcia', email: 'm.garcia@email.com', subject: 'Physics', students: 38, rating: 4.9, avatar: '/api/placeholder/32/32', experience: '12 years' },
-    { id: 3, name: 'Dr. James Wilson', email: 'j.wilson@email.com', subject: 'Chemistry', students: 42, rating: 4.7, avatar: '/api/placeholder/32/32', experience: '6 years' },
-    { id: 4, name: 'Prof. Anna Lee', email: 'a.lee@email.com', subject: 'Biology', students: 35, rating: 4.6, avatar: '/api/placeholder/32/32', experience: '10 years' }
+    { id: 1, name: 'Dr. Robert Smith', email: 'r.smith@email.com', subject: 'Mathematics', students: 45, rating: 4.8, avatar: '/images/teacher1.jpg', experience: '8 years' },
+    { id: 2, name: 'Prof. Maria Garcia', email: 'm.garcia@email.com', subject: 'Physics', students: 38, rating: 4.9, avatar: '/images/teacher1.jpg', experience: '12 years' },
+    { id: 3, name: 'Dr. James Wilson', email: 'j.wilson@email.com', subject: 'Chemistry', students: 42, rating: 4.7, avatar: '/images/teacher1.jpg', experience: '6 years' },
+    { id: 4, name: 'Prof. Anna Lee', email: 'a.lee@email.com', subject: 'Biology', students: 35, rating: 4.6, avatar: '/images/teacher1.jpg', experience: '10 years' }
   ];
 
   const recentEmployees: Employee[] = [
-    { id: 1, name: 'John Admin', email: 'j.admin@email.com', role: 'Administrator', department: 'Information Technology', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8906' },
-    { id: 2, name: 'Mary HR', email: 'm.hr@email.com', role: 'HR Manager', department: 'Human Resources', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8907' },
-    { id: 3, name: 'Tom Finance', email: 't.finance@email.com', role: 'Accountant', department: 'Finance & Accounting', status: 'Inactive', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8908' },
-    { id: 4, name: 'Sue Support', email: 's.support@email.com', role: 'Support Staff', department: 'Student Services', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8909' },
-    { id: 5, name: 'Bob Marketing', email: 'b.marketing@email.com', role: 'Marketing Specialist', department: 'Marketing & Communications', status: 'Inactive', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8910' },
-    { id: 6, name: 'Alice Academic', email: 'a.academic@email.com', role: 'Academic Coordinator', department: 'Academic Affairs', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8911' },
-    { id: 7, name: 'David Facilities', email: 'd.facilities@email.com', role: 'Facilities Manager', department: 'Facilities Management', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8912' },
-    { id: 8, name: 'Emma Research', email: 'e.research@email.com', role: 'Research Analyst', department: 'Research & Development', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8913' },
-    { id: 9, name: 'Frank International', email: 'f.international@email.com', role: 'International Relations Officer', department: 'International Relations', status: 'Inactive', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8914' },
-    { id: 10, name: 'Grace IT', email: 'g.it@email.com', role: 'IT Support Specialist', department: 'Information Technology', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8915' },
-    { id: 11, name: 'Henry Admin', email: 'h.admin@email.com', role: 'Administrative Assistant', department: 'Administration', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8916' },
-    { id: 12, name: 'Ivy Finance', email: 'i.finance@email.com', role: 'Financial Analyst', department: 'Finance & Accounting', status: 'Active', avatar: '/api/placeholder/32/32', phone: '+1 234-567-8917' }
+    { id: 1, name: 'John Admin', email: 'j.admin@email.com', role: 'Administrator', department: 'Information Technology', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8906' },
+    { id: 2, name: 'Mary HR', email: 'm.hr@email.com', role: 'HR Manager', department: 'Human Resources', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8907' },
+    { id: 3, name: 'Tom Finance', email: 't.finance@email.com', role: 'Accountant', department: 'Finance & Accounting', status: 'Inactive', avatar: '/images/carer1.jpg', phone: '+1 234-567-8908' },
+    { id: 4, name: 'Sue Support', email: 's.support@email.com', role: 'Support Staff', department: 'Student Services', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8909' },
+    { id: 5, name: 'Bob Marketing', email: 'b.marketing@email.com', role: 'Marketing Specialist', department: 'Marketing & Communications', status: 'Inactive', avatar: '/images/carer1.jpg', phone: '+1 234-567-8910' },
+    { id: 6, name: 'Alice Academic', email: 'a.academic@email.com', role: 'Academic Coordinator', department: 'Academic Affairs', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8911' },
+    { id: 7, name: 'David Facilities', email: 'd.facilities@email.com', role: 'Facilities Manager', department: 'Facilities Management', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8912' },
+    { id: 8, name: 'Emma Research', email: 'e.research@email.com', role: 'Research Analyst', department: 'Research & Development', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8913' },
+    { id: 9, name: 'Frank International', email: 'f.international@email.com', role: 'International Relations Officer', department: 'International Relations', status: 'Inactive', avatar: '/images/carer1.jpg', phone: '+1 234-567-8914' },
+    { id: 10, name: 'Grace IT', email: 'g.it@email.com', role: 'IT Support Specialist', department: 'Information Technology', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8915' },
+    { id: 11, name: 'Henry Admin', email: 'h.admin@email.com', role: 'Administrative Assistant', department: 'Administration', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8916' },
+    { id: 12, name: 'Ivy Finance', email: 'i.finance@email.com', role: 'Financial Analyst', department: 'Finance & Accounting', status: 'Active', avatar: '/images/carer1.jpg', phone: '+1 234-567-8917' }
   ];
 
   // State for data arrays (to enable updates)
@@ -407,7 +409,7 @@ export default function Dashboard() {
       department: newEmployeeFormData.department,
       status: newEmployeeFormData.status,
       phone: newEmployeeFormData.phone,
-      avatar: '/api/placeholder/32/32'
+      avatar: '/images/carer1.jpg'
     };
 
     setEmployeesData([...employeesData, newEmployee]);
@@ -441,7 +443,7 @@ export default function Dashboard() {
       status: newStudentFormData.status,
       grade: newStudentFormData.grade,
       phone: newStudentFormData.phone,
-      avatar: '/api/placeholder/32/32'
+      avatar: '/images/student1.jpg'
     };
 
     setStudentsData([...studentsData, newStudent]);
@@ -475,7 +477,7 @@ export default function Dashboard() {
       students: newTeacherFormData.students,
       rating: newTeacherFormData.rating,
       experience: newTeacherFormData.experience,
-      avatar: '/api/placeholder/32/32'
+      avatar: '/images/teacher1.jpg'
     };
 
     setTeachersData([...teachersData, newTeacher]);
@@ -590,8 +592,8 @@ export default function Dashboard() {
     {
       id: 1,
       name: "Computer Science",
-      degree: "BSc",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop",
+      degree: "Bsc",
+      image: "/images/cse.jpg",
       duration: "3 Years",
       students: 245,
       rating: 4.8,
@@ -600,8 +602,8 @@ export default function Dashboard() {
     {
       id: 2,
       name: "Data Science",
-      degree: "MSc",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+      degree: "Msc",
+      image: "/images/data.jpg",
       duration: "2 Years",
       students: 189,
       rating: 4.9,
@@ -610,8 +612,8 @@ export default function Dashboard() {
     {
       id: 3,
       name: "Business Administration",
-      degree: "BSc",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop",
+      degree: "Bsc",
+      image: "/images/bba.jpg",
       duration: "3 Years",
       students: 312,
       rating: 4.7,
@@ -620,8 +622,8 @@ export default function Dashboard() {
     {
       id: 4,
       name: "Artificial Intelligence",
-      degree: "MSc",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
+      degree: "Msc",
+      image: "/images/ai.jpg",
       duration: "2 Years",
       students: 156,
       rating: 4.9,
@@ -631,7 +633,7 @@ export default function Dashboard() {
       id: 5,
       name: "Psychology",
       degree: "BSc",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop",
+      image: "/images/pycho.jpg",
       duration: "3 Years",
       students: 278,
       rating: 4.6,
@@ -640,8 +642,8 @@ export default function Dashboard() {
     {
       id: 6,
       name: "Cybersecurity",
-      degree: "MSc",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
+      degree: "Msc",
+      image: "/images/cyber.jpg",
       duration: "2 Years",
       students: 134,
       rating: 4.8,
@@ -650,8 +652,8 @@ export default function Dashboard() {
     {
       id: 7,
       name: "Marketing",
-      degree: "BSc",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      degree: "Bsc",
+      image: "/images/marketing.jpg",
       duration: "3 Years",
       students: 267,
       rating: 4.5,
@@ -660,8 +662,8 @@ export default function Dashboard() {
     {
       id: 8,
       name: "Biotechnology",
-      degree: "MSc",
-      image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop",
+      degree: "Msc",
+      image: "/images/bio.jpg",
       duration: "2 Years",
       students: 98,
       rating: 4.7,
@@ -670,8 +672,8 @@ export default function Dashboard() {
     {
       id: 9,
       name: "Finance",
-      degree: "BSc",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop",
+      degree: "Bsc",
+      image: "/images/finance.jpg",
       duration: "3 Years",
       students: 234,
       rating: 4.6,
@@ -680,8 +682,8 @@ export default function Dashboard() {
     {
       id: 10,
       name: "Environmental Science",
-      degree: "MSc",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
+      degree: "Msc",
+      image: "/images/environment.jpg",
       duration: "2 Years",
       students: 145,
       rating: 4.8,
@@ -798,8 +800,8 @@ export default function Dashboard() {
                   <div className="absolute top-2 right-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium font-poppins ${
                       course.degree === 'BSc' 
-                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' 
-                        : 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                        ? 'bg-white/70 text-gray-900' 
+                        : 'bg-purple-500/80 text-white'
                     }`}>
                       {course.degree}
                     </span>
