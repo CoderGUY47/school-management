@@ -892,7 +892,10 @@ export default function Dashboard() {
               <div className="flex items-center space-x-4">
                 <div className="text-gray-400 text-base font-poppins">Courses</div>
                 <div className="text-gray-400 text-base font-poppins">Students</div>
-                <div className="text-gray-400 text-base font-poppins">Teachers</div>
+                <Link href="/teachers" className="text-gray-400 hover:text-white text-base font-poppins transition-colors">Teachers</Link>
+                <Link href="/teacher/attendance" className="text-gray-400 hover:text-white text-base font-poppins transition-colors">
+                  Attendance
+                </Link>
                 <Link href="/profile" className="text-gray-400 hover:text-white text-base font-poppins transition-colors">
                   Profile
                 </Link>
@@ -948,16 +951,7 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-8 scroll-container">
-        {/* Quick Profile Access */}
-        <div className="mb-6 flex justify-end">
-          <Link 
-            href="/profile" 
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 font-poppins text-sm shadow-lg backdrop-blur-sm"
-          >
-            <FaUser className="text-sm" />
-            <span>Profile Settings</span>
-          </Link>
-        </div>
+        {/* Quick Profile Access removed */}
 
         {/* Stats Cards */}
         <StatsCards darkMode={darkMode} />

@@ -171,7 +171,7 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900">
       {/* Header */}
-      <div className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-gradient-to-r from-purple-900/80 via-indigo-900/80 to-slate-900/80">
+      <div className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-gradient-to-br from-[#250c38] via-[#3c225a] to-slate-800">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">

@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-poppins`}>
+      <body className={`${poppins.variable} font-poppins min-h-screen bg-gradient-to-br from-[#250c38] via-[#3c225a] to-slate-800 text-white`}>
         <ErrorBoundary>
           {children}
         </ErrorBoundary>
