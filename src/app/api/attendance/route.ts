@@ -10,11 +10,11 @@ type StudentAttendance = {
 
 function makeDummy(classId: number, section: string): StudentAttendance[] {
   const names = [
-    'Alice Johnson', 'Brian Lee', 'Carlos Gomez', 'Diana Patel', 'Evan Smith',
-    'Fatima Khan', 'George Brown', 'Hannah Liu', 'Ivan Petrov', 'Julia Kim',
-    'Kevin Zhang', 'Laura Martinez', 'Mohammed Ali', 'Nina Rossi', 'Omar Hussein',
-    'Priya Sharma', 'Quentin Blake', 'Rita Sousa', 'Samir Gupta', 'Tanya Singh',
-    'Uma Das', 'Vikram Rao', 'Wendy Wu', 'Xavier Cruz', 'Yara Haddad', 'Zainab Noor'
+    'Aisha Rahman', 'Fahim Ahmed', 'Nusrat Jahan', 'Rohan Khan', 'Zara Begum',
+    'Imran Hossain', 'Sultana Akter', 'Kamal Uddin', 'Laila Chowdhury', 'Omar Faruk',
+    'Priya Das', 'Rahim Ali', 'Shirin Sultana', 'Tariq Islam', 'Urmi Barua',
+    'Wahiduzzaman', 'Yasmin Ara', 'Zahid Hasan', 'Farzana Akter', 'Jamil Ahmed',
+    'Mitu Rani', 'Naimur Rahman', 'Rina Begum', 'Sajid Khan', 'Tanzina Islam', 'Zisan Ahmed'
   ];
   const classLabel = `Class ${classId}-${section}`;
   return names.slice(0, 20).map((name, i) => ({

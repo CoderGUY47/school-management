@@ -156,7 +156,7 @@ const SignIn: React.FC<SignInProps> = ({ onSignIn }) => {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-gray-400 text-sm font-poppins">
-            © 2024 Blend Learning Center. All rights reserved.
+            © 2025 Blend Learning Center. All rights reserved.
           </p>
         </div>
       </div>

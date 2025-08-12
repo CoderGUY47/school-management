@@ -104,24 +104,7 @@ export default function AttendanceSheet({ date, classId, section, classFilter }:
 
   function handleMarkAllPresent() {
     setRecords((prev) => prev.map((r) => ({ ...r, status: 'present' })));
-  }
 
-  async function handleSave() {
-    try {
-      const resolvedClassId = classId ?? 1;
-      const resolvedSection = (section ?? 'A').toUpperCase();
-      const compact: Record<string, AttendanceRecord['status']> = {};
-      for (const r of records) compact[r.id] = r.status;
-      await fetch('/api/attendance/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ date: selectedDate, classId: resolvedClassId, section: resolvedSection, statuses: compact }),
-      });
-      setSavedMessage('Attendance updated');
-      setTimeout(() => setSavedMessage(null), 1800);
-    } catch (e) {
-      setError('Failed to save');
-    }
   }
 
   const totals = useMemo(() => {
@@ -132,6 +115,10 @@ export default function AttendanceSheet({ date, classId, section, classFilter }:
     }
     return counts;
   }, [records]);
+
+  function handleSave(event: React.MouseEvent<HTMLButtonElement>): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <div className="w-full space-y-4 text-white">
