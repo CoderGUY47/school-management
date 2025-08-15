@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 School Management System
 
-## Getting Started
+A comprehensive web application built with Next.js, React, and Express.js for efficient school administration management.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Student Management**: Add, edit, delete, and search student records
+- **Teacher Management**: Comprehensive teacher profile management
+- **Dashboard**: Key metrics and statistics with real-time updates
+- **Authentication**: Secure login system with role-based access
+- **Responsive Design**: Works seamlessly on all devices
+- **Dark/Light Mode**: Toggle between themes
+
+## 🛠️ Technology Stack
+
+### Frontend
+- Next.js 15.4.4
+- React 19.1.0
+- TypeScript 5
+- Tailwind CSS
+- Radix UI Components
+
+### Backend
+- Node.js
+- Express.js 5.1.0
+- RESTful API
+- CORS support
+
+## 📁 Project Structure
+
+```
+school-management-system/
+├── frontend/                 # Next.js application
+│   ├── src/app/components/  # React components
+│   ├── src/app/page.tsx     # Main dashboard
+│   └── package.json         # Dependencies
+├── backend/                  # Express.js server
+│   ├── index.js             # Server file
+│   └── package.json         # Dependencies
+└── README.md                # This file
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend
+```bash
+cd backend
+npm install
+node index.js
+```
 
-## Learn More
+## 💻 Usage
 
-To learn more about Next.js, take a look at the following resources:
+- **Demo Login**: Username: `admin`, Password: `admin`
+- **Access**: Open http://localhost:3000 in your browser
+- **Features**: Manage students, teachers, courses, and attendance
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔧 Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Methodology**: Agile/Iterative Development
+- **Code Quality**: TypeScript + ESLint
+- **State Management**: React Hooks
+- **Hot Reloading**: Instant development feedback
 
-## Deploy on Vercel
+## 📚 Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **ProfileSettings.tsx**: User profile management
+- **DataTables.tsx**: Data display and management
+- **Modals.tsx**: Interactive dialogs and forms
+- **SignIn.tsx**: Authentication system
+- **StatsCards.tsx**: Dashboard statistics
+- **TeacherCard.tsx**: Teacher information display
+- **attendence.tsx**: Attendance tracking
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔮 Future Features
+
+- Database integration (PostgreSQL/MongoDB)
+- Real-time notifications
+- Advanced reporting
+- Mobile application
+- API documentation
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+---
+
+**Built with modern web technologies and Agile development principles**
